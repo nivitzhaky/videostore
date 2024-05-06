@@ -14,6 +14,14 @@ public class Rental
 		return movie;
 	}
 	
-	private Movie movie;
+	Movie movie;
 	private int daysRented;
+
+	double determineAmount() {
+		return movie.determineAmount(daysRented);
+	}
+
+	public int determineFrequentRenterPoints() {
+		return movie.determineFrequentRenterPoints(daysRented);
+	}
 }
