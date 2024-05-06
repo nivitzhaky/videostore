@@ -1,19 +1,21 @@
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
+import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class VideoStoreTest
 {
 	public static final String CUSTOMER_NAME = "Customer Name";
-	public static final Movie REGULAR_MOVIE1 = new Movie("Regular1", Movie.REGULAR);
-	public static final Movie REGULAR_MOVIE2 = new Movie("Regular2", Movie.REGULAR);
-	public static final Movie REGULAR_MOVIE3 = new Movie("Regular3", Movie.REGULAR);
-	public static final Movie CHILDRENS_MOVIE = new Movie("Childrens", Movie.CHILDRENS);
-	public static final Movie NEW_RELEASE_MOVIE1 = new Movie("NewRelease1", Movie.NEW_RELEASE);
-	public static final Movie NEW_RELEASE_MOVIE2 = new Movie("NewRelease2", Movie.NEW_RELEASE);
+	public static final Movie REGULAR_MOVIE1 = new RegularMovie("Regular1", Movie.REGULAR);
+	public static final Movie REGULAR_MOVIE2 = new RegularMovie("Regular2", Movie.REGULAR);
+	public static final Movie REGULAR_MOVIE3 = new RegularMovie("Regular3", Movie.REGULAR);
+	public static final Movie CHILDRENS_MOVIE = new ChildrensMovie("Childrens", Movie.CHILDRENS);
+	public static final Movie NEW_RELEASE_MOVIE1 = new NewReleaseMovie("NewRelease1", Movie.NEW_RELEASE);
+	public static final Movie NEW_RELEASE_MOVIE2 = new NewReleaseMovie("NewRelease2", Movie.NEW_RELEASE);
 	private Statement statement;
 
 	public static final double DELTA = 0.001;
