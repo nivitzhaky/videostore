@@ -14,14 +14,14 @@ public class VideoStoreTest
 	public static final Movie CHILDRENS_MOVIE = new Movie("Childrens", Movie.CHILDRENS);
 	public static final Movie NEW_RELEASE_MOVIE1 = new Movie("NewRelease1", Movie.NEW_RELEASE);
 	public static final Movie NEW_RELEASE_MOVIE2 = new Movie("NewRelease2", Movie.NEW_RELEASE);
-	private Customer statement;
+	private Statement statement;
 
 	public static final double DELTA = 0.001;
 
 
 	@BeforeEach
 	protected void setUp ()  {
-		statement = new Customer (CUSTOMER_NAME);
+		statement = new Statement(CUSTOMER_NAME);
 	}
 
 	@Test
