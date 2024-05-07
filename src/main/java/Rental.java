@@ -5,15 +5,19 @@ public class Rental
 		this.movie 		= movie;
 		this.daysRented = daysRented;
 	}
-	
-	public int getDaysRented () {
-		return daysRented;
-	}
-	
+
 	public Movie getMovie () {
 		return movie;
 	}
-	
+
 	private Movie movie;
 	private int daysRented;
+
+	double rentalAmount() {
+		return movie.rentalAmount(daysRented);
+	}
+
+	int frequentRenterPoints() {
+		return movie.frequentRenterPoints(daysRented);
+	}
 }
