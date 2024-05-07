@@ -7,39 +7,74 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class VideoStoreTest
 {
+	private Statement statement;
+
+	public static final String NEW_RELEASE_1 = "New Release1";
+	public static final Movie NEW_RELEASE1 = new Movie(NEW_RELEASE_1, Movie.NEW_RELEASE);
+	public static final String NEW_RELEASE_2 = "New Release2";
+	public static final Movie NEW_RELEASE2 = new Movie(NEW_RELEASE_2, Movie.NEW_RELEASE);
+	public static final String CHILDRENS1 = "Childrens";
+	public static final Movie CHILDRENS = new Movie(CHILDRENS1, Movie.CHILDRENS);
+	public static final String REGULAR_1 = "Regular1";
+	public static final Movie REGULAR1 = new Movie(REGULAR_1, Movie.REGULAR);
+	public static final String REGULAR_2 = "Regular2";
+	public static final Movie REGULAR2 = new Movie(REGULAR_2, Movie.REGULAR);
+	public static final String REGULAR_3 = "Regular3";
+	public static final Movie REGULAR3 = new Movie(REGULAR_3, Movie.REGULAR);
+
 
 	@BeforeEach
 	protected void setUp ()  {
-		customer = new Customer ("Fred");
+		statement = new Statement("Customer Name");
 	}
 
 	@Test
 	public void testSingleNewReleaseStatement () {
-		customer.addRental (new Rental (new Movie ("The Cell", Movie.NEW_RELEASE), 3));		
-		assertEquals ("Rental Record for Fred\n\tThe Cell\t9.0\nYou owed 9.0\nYou earned 2 frequent renter points\n", customer.statement ());
+		statement.addRental (new Rental (NEW_RELEASE1, 3));
+		statement.generate();
+		assertEquals(statement.getTotalAmount(), 9.0);
+		assertEquals(statement.getFrequentRenterPoints(), 2);
 	}
 
 	@Test
 	public void testDualNewReleaseStatement () {
-		customer.addRental (new Rental (new Movie ("The Cell", Movie.NEW_RELEASE), 3));
-		customer.addRental (new Rental (new Movie ("The Tigger Movie", Movie.NEW_RELEASE), 3));		
-		assertEquals ("Rental Record for Fred\n\tThe Cell\t9.0\n\tThe Tigger Movie\t9.0\nYou owed 18.0\nYou earned 4 frequent renter points\n", customer.statement ());
+		statement.addRental (new Rental (NEW_RELEASE1, 3));
+		statement.addRental (new Rental (NEW_RELEASE2, 3));
+		statement.generate();
+		assertEquals(statement.getTotalAmount(), 18.0);
+		assertEquals(statement.getFrequentRenterPoints(), 4);
 	}
 
 	@Test
 	public void testSingleChildrensStatement () {
-		customer.addRental (new Rental (new Movie ("The Tigger Movie", Movie.CHILDRENS), 3));
-		assertEquals ("Rental Record for Fred\n\tThe Tigger Movie\t1.5\nYou owed 1.5\nYou earned 1 frequent renter points\n", customer.statement ());
+		statement.addRental (new Rental (CHILDRENS, 3));
+		statement.generate();
+		assertEquals(statement.getTotalAmount(), 1.5);
+		assertEquals(statement.getFrequentRenterPoints(), 1);
 	}
 
 	@Test
 	public void testMultipleRegularStatement () {
-		customer.addRental (new Rental (new Movie ("Plan 9 from Outer Space", Movie.REGULAR), 1));
-		customer.addRental (new Rental (new Movie ("8 1/2", Movie.REGULAR), 2));
-		customer.addRental (new Rental (new Movie ("Eraserhead", Movie.REGULAR), 3));
-		
-		assertEquals ("Rental Record for Fred\n\tPlan 9 from Outer Space\t2.0\n\t8 1/2\t2.0\n\tEraserhead\t3.5\nYou owed 7.5\nYou earned 3 frequent renter points\n", customer.statement ());
+		statement.addRental (new Rental (REGULAR1, 1));
+		statement.addRental (new Rental (REGULAR2, 2));
+		statement.addRental (new Rental (REGULAR3, 3));
+		statement.generate();
+		assertEquals(statement.getTotalAmount(), 7.5);
+		assertEquals(statement.getFrequentRenterPoints(), 3);
 	}
 
-	private Customer customer;
+	@Test
+	public void testMultipleRegularStatementFormat () {
+		statement.addRental (new Rental (REGULAR1, 1));
+		statement.addRental (new Rental (REGULAR2, 2));
+		statement.addRental (new Rental (REGULAR3, 3));
+
+		assertEquals ("Rental Record for Customer Name\n" +
+				"\t" + REGULAR_1 + "\t2.0\n" +
+				"\t" + REGULAR_2 + "\t2.0\n" +
+				"\t"+  REGULAR_3+ "\t3.5\n" +
+				"You owed 7.5\n" +
+				"You earned 3 frequent renter points\n",
+				statement.generate());
+	}
 }
