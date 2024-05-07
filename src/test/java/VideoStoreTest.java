@@ -10,17 +10,17 @@ public class VideoStoreTest
 	private Statement statement;
 
 	public static final String NEW_RELEASE_1 = "New Release1";
-	public static final Movie NEW_RELEASE1 = new NewReleaseMovie(NEW_RELEASE_1, Movie.NEW_RELEASE);
+	public static final Movie NEW_RELEASE1 = new NewReleaseMovie(NEW_RELEASE_1);
 	public static final String NEW_RELEASE_2 = "New Release2";
-	public static final Movie NEW_RELEASE2 = new NewReleaseMovie(NEW_RELEASE_2, Movie.NEW_RELEASE);
+	public static final Movie NEW_RELEASE2 = new NewReleaseMovie(NEW_RELEASE_2);
 	public static final String CHILDRENS1 = "Childrens";
-	public static final Movie CHILDRENS = new ChildrensMovie(CHILDRENS1, Movie.CHILDRENS);
+	public static final Movie CHILDRENS = new ChildrensMovie(CHILDRENS1);
 	public static final String REGULAR_1 = "Regular1";
-	public static final Movie REGULAR1 = new RegularMovie(REGULAR_1, Movie.REGULAR);
+	public static final Movie REGULAR1 = new RegularMovie(REGULAR_1);
 	public static final String REGULAR_2 = "Regular2";
-	public static final Movie REGULAR2 = new RegularMovie(REGULAR_2, Movie.REGULAR);
+	public static final Movie REGULAR2 = new RegularMovie(REGULAR_2);
 	public static final String REGULAR_3 = "Regular3";
-	public static final Movie REGULAR3 = new RegularMovie(REGULAR_3, Movie.REGULAR);
+	public static final Movie REGULAR3 = new RegularMovie(REGULAR_3);
 
 
 	@BeforeEach
