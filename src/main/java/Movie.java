@@ -8,13 +8,12 @@ public abstract class Movie
 	public Movie (String title) {
 		this.title 		= title;
 	}
-
 	
-	public String getTitle () {
-		return title;
-	}
-
 	abstract double rentalAmount(int daysRented);
 
 	abstract int frequentRenterPoints(int daysRented);
+
+	public String getTitle () {
+		return title;
+	}
 }

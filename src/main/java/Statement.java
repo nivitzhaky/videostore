@@ -39,6 +39,15 @@ public class Statement
 		return result;
 	}
 
+	private void initialize() {
+		totalAmount = 0;
+		frequentRenterPoints = 0;
+	}
+
+	private String header() {
+		return "Rental Record for " + getCustomerName() + "\n";
+	}
+
 	private static String formatRentalLine(Rental rental, double rentalAmount) {
 		return "\t" + rental.getMovie().getTitle() + "\t"
 				+ rentalAmount + "\n";
@@ -47,15 +56,6 @@ public class Statement
 	private String footer() {
 		return  "You owed " + totalAmount + "\n"
 			+ "You earned " + frequentRenterPoints + " frequent renter points\n";
-	}
-
-	private String header() {
-		return "Rental Record for " + getCustomerName() + "\n";
-	}
-
-	private void initialize() {
-		totalAmount = 0;
-		frequentRenterPoints = 0;
 	}
 
 	public double getTotalAmount() {
